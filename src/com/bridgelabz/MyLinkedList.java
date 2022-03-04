@@ -12,7 +12,7 @@ public class MyLinkedList<K> {
      */
     public void display() {
         MyHashTableNode node = (MyHashTableNode) this.head;
-        System.out.println("Frequency of words: ");
+        //System.out.println("Frequency of words: ");
         while (node != null) {
             System.out.print(node.getKey()+":"+node.getValue()+", ");
             node = node.getNext();
