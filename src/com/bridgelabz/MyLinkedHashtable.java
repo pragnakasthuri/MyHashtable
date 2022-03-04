@@ -79,10 +79,50 @@ public class MyLinkedHashtable<K, V> {
     }
 
     /**
+     * this method is to remove the key from myhashtable
+     * @param key - key to delete
+     */
+    private void remove(K key) {
+        int index = this.getBucketIndex(key);
+        MyLinkedList myLinkedList = this.bucketList.get(index);
+        if (myLinkedList == null) {
+            return;
+        }
+        myLinkedList.deleteAnyElement(key);
+    }
+
+    /**
+     * This method is to traverse through the MyLinkedHashTable and display
+     */
+    public void display() {
+        for(MyLinkedList linkedList : this.bucketList) {
+            if (linkedList != null) {
+                System.out.println("");
+                /**
+                 * 5.Calling the display method of linked list
+                 */
+                linkedList.display();
+            }
+        }
+    }
+
+    /**
      * Main method for manipulating MyLinkedHashtable
      * @param args - default java param
      */
     public static void main(String[] args) {
+
+        /**
+         * PROCEDURE:
+         * 1.Assigning the given string to sentence
+         * 2.Creating the object for MyLinkedHashtable
+         * 3.Finding the frequency of word using getValue and Search methods
+         *   and adding the word and frequency to MyHashTable ad key and value
+         * 4. calling display to print all key and values
+         * 5. calling remove method on myLinkedHashtable object
+         * 6. display the elements after remove operation
+         */
+
         /**
          * 1.Assigning the given string to sentence
          */
@@ -104,18 +144,17 @@ public class MyLinkedHashtable<K, V> {
             frequency = frequency == null ? 1 : frequency + 1;
             myLinkedHashtable.add(word, frequency);
         }
-
         /**
-         * 4.Traverse through the MyLinkedHashTable
+         * 4. calling display to print all key and values
          */
-        for(MyLinkedList linkedList : myLinkedHashtable.bucketList) {
-            if (linkedList != null) {
-                System.out.println("");
-                /**
-                 * 5.Calling the display method of linked list
-                 */
-                linkedList.display();
-            }
-        }
+        myLinkedHashtable.display();
+        /**
+         * 5. calling remove method on myLinkedHashtable object
+         */
+        myLinkedHashtable.remove("avoidable");
+        /**
+         * 6. display the elements after remove operation
+         */
+        myLinkedHashtable.display();
     }
 }

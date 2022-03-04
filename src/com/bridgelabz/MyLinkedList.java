@@ -87,6 +87,28 @@ public class MyLinkedList<K> {
     }
 
     /**
+     * Creating the deleteAnyElement method to delete any element passed as argument
+     * @param key - key to delete
+     */
+    public void deleteAnyElement(K key){
+        INode tempNode = this.head;
+        INode prev = null;
+
+        if(tempNode != null && tempNode.getKey().equals(key)) {
+            this.head = tempNode.getNext();
+            return;
+        }
+        while ((tempNode != null && !tempNode.getKey().equals(key))) {
+            prev = tempNode;
+            tempNode = tempNode.getNext();
+        }
+        if(tempNode == null)
+            return;
+
+        prev.setNext(tempNode.getNext());
+    }
+
+    /**
      *
      * @return the key value pair as word and frequency
      */
